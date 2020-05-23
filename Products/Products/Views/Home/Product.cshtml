@@ -4,19 +4,36 @@
 @{
     ViewBag.Title = "Product";
 }
-
 <h2>Product</h2>
+Dodaj novi proizvod
+@using (Html.BeginForm("AddProduct", "Home", FormMethod.Get))
+{
+    <label>Ime proizvoda: </label>
+    <input type="text" name="nameOfProduct" /> <br />
+    <label>Opis:</label>
+    <input type="text" name="descriptionOfProduct" /> <br />
+    <label>Kategorija: </label>
+    <input type="text" name="categoryOfProduct" /> <br />
+    <label>Proizvodjac: </label>
+    <input type="text" name="manufacturerOfProduct" /> <br />
+    <label>Dobavljac </label>
+    <input type="text" name="supplierOfProduct" /> <br />
+    <label>Cena</label>
+    <input type="number" name="priceOfProduct" /> <label>din</label> <br />
+    <button type="submit">Dodaj novi proizvod</button> <br />
+
+}
 
 @foreach (var pro in Model)
 {
-<div>
-    <dl class="dl-horizontal">
+    <div>
+        <dl class="dl-horizontal">
 
-        <dd>
-            Ime proizvoda: <strong>@pro.Name &nbsp;</strong>  Opis: @pro.Description &nbsp; Kategorija: @pro.Category &nbsp;  Proizvodjac: 
-            @pro.Manufacturer &nbsp;  Dobavljac: @pro.Supplier &nbsp;  Cena: @pro.Price
-        </dd>
+            <dd>
+                Ime proizvoda: <strong>@pro.Name &nbsp;</strong>  Opis: @pro.Description &nbsp; Kategorija: @pro.Category &nbsp;  Proizvodjac:
+                @pro.Manufacturer &nbsp;  Dobavljac: @pro.Supplier &nbsp;  Cena: @pro.Price
+            </dd>
 
-    </dl>
-</div>
+        </dl>
+    </div>
 }
