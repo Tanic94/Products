@@ -8,15 +8,10 @@ namespace Products.Controllers
 {
     public class HomeController : Controller
     {
+        ProductDbEntities dbConnecion = new ProductDbEntities();
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
@@ -28,8 +23,8 @@ namespace Products.Controllers
         }
         public ActionResult Product()
         {
-
-            return View();
+            IQueryable<Product> products = dbConnecion.Products.OrderBy(p => p.Name);
+            return View(products);
         }
     }
 }

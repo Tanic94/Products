@@ -1,0 +1,22 @@
+﻿
+@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Product";
+}
+
+<h2>Product</h2>
+
+@foreach (var pro in Model)
+{
+<div>
+    <dl class="dl-horizontal">
+
+        <dd>
+            Ime proizvoda: <strong>@pro.Name &nbsp;</strong>  Opis: @pro.Description &nbsp; Kategorija: @pro.Category &nbsp;  Proizvodjac: 
+            @pro.Manufacturer &nbsp;  Dobavljac: @pro.Supplier &nbsp;  Cena: @pro.Price
+        </dd>
+
+    </dl>
+</div>
+}
