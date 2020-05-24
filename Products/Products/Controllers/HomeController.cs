@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Products.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +11,12 @@ namespace Products.Controllers
     public class HomeController : Controller
     {
         ProductDbEntities dbConnecion = new ProductDbEntities();
+
+        public ActionResult ListOfArticles(){
+            var json = "{\"articles\":[{\"ArticleId\":\"Id1\", \"ArticleName\":\"Name1\", \"ArticleDescription\":\"Description1\", \"ArticleCategory\":\"Category1\", \"ArticleManufacturer\":\"Manufacturer1\", \"ArticleSupplier\":\"Supplier1\", \"ArticlePrice\":\"Price1\"},{\"ArticleId\":\"Id2\", \"ArticleName\":\"Name2\", \"ArticleDescription\":\"Description2\", \"ArticleCategory\":\"Category2\", \"ArticleManufacturer\":\"Manufacturer2\", \"ArticleSupplier\":\"Supplier2\", \"ArticlePrice\":\"Price2\"}]}";
+            var articles = JsonConvert.DeserializeObject<Articles>(json);
+            return View(articles);
+        }
 
         public ActionResult Product()
         {
