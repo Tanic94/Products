@@ -7,10 +7,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body style="padding-top: 0px !important">
+    <script>
+        $(document).ready(function () {
+            $('.editform').hide();
+            $(".edit").click(function () {
+                $('.editform').show();
+                var str = $(this).attr("id");
+                var res = str.split(",");
+                $('#EditButton').focus();
+                $('#EditButton').val(res[0]);
+                $('input[name = "newNameOfProduct"]').val(res[1]);
+                $('input[name = "newDescriptionOfProduct"]').val(res[2]);
+                $('input[name = "newCategoryOfProduct"]').val(res[3]);
+                $('input[name = "newManufacturerOfProduct"]').val(res[4]);
+                $('input[name = "newSupplierOfProduct"]').val(res[5]);
+                $('input[name = "newPriceOfProduct"]').val(res[6]);
+            });
+        });
+    </script>
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             

@@ -2,39 +2,39 @@
 @model IEnumerable<Product>
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Product";
+    ViewBag.Title = "Product";
 }
 <h2>Products</h2>
 New product <br /> <br />
 @using (Html.BeginForm("AddProduct", "Home", FormMethod.Post))
 {
-                  <div class="form-row">
-                      <div class="col">
-                          <input type="text" class="form-control" name="nameOfProduct" placeholder="Name">
-                      </div>
-                      <div class="col">
-                          <input type="text" class="form-control" name="descriptionOfProduct" placeholder="Description">
-                      </div>
-                      <div class="col">
-                          <input type="text" class="form-control" name="categoryOfProduct" placeholder="Category">
-                      </div>
-                      <div class="col">
-                          <input type="text" class="form-control" name="manufacturerOfProduct" placeholder="Manufacturer">
-                      </div>
-                      <div class="col">
-                          <input type="text" class="form-control" name="supplierOfProduct" placeholder="Supplier">
-                      </div>
-                      <div class="col">
-                          <input type="text" class="form-control" name="priceOfProduct" placeholder="Price in eur">
-                      </div>
-                      <br />
-                      <div class="col">
-                          <button type="submit" class="btn btn-primary">Add new product</button>
-                      </div>
-                      <br />
-                  </div>
+    <div class="form-row">
+        <div class="col">
+            <input type="text" class="form-control" name="nameOfProduct" placeholder="Name">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="descriptionOfProduct" placeholder="Description">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="categoryOfProduct" placeholder="Category">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="manufacturerOfProduct" placeholder="Manufacturer">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="supplierOfProduct" placeholder="Supplier">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" name="priceOfProduct" placeholder="Price">
+        </div>
+        <br />
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Add new product</button>
+        </div>
+        <br />
+    </div>
 
 }
 
@@ -61,8 +61,44 @@ New product <br /> <br />
                 <td>@pro.Manufacturer</td>
                 <td>@pro.Supplier</td>
                 <td>@pro.Price</td>
-                <td><button class="btn btn-secondary">Edit</button> &nbsp; <button  class="btn btn-danger" >Delete</button></td>
+                <td>
+                    <button class="btn btn-secondary edit" id="@pro.ProductID.ToString(),@pro.Name,@pro.Description,@pro.Category,@pro.Manufacturer,@pro.Supplier,@pro.Price">Edit</button> &nbsp;
+                    <form action="DeleteProduct" style="display: inline;">
+                        <button class="btn btn-danger" type="submit" name="productId" value="@pro.ProductID.ToString()">
+                            Delete
+                        </button>
+                    </form>
+
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+    <form action="EditProduct" class="editform" method="post">
+        <div class="form-row">
+            <div class="col">
+                <input type="text" class="form-control" name="newNameOfProduct" placeholder="Name" id="newName">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="newDescriptionOfProduct" placeholder="Description">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="newCategoryOfProduct" placeholder="Category">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="newManufacturerOfProduct" placeholder="Manufacturer" />
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="newSupplierOfProduct" placeholder="Supplier">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="newPriceOfProduct" placeholder="Price">
+            </div>
+            <br />
+            <div class="col">
+                <button type="submit" class="btn btn-primary" id="EditButton" name="productId" value="">Edit this product</button>
+            </div>
+            <br />
+        </div>
+    </form>
