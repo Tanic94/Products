@@ -10,17 +10,13 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body style="padding-top: 0px !important">
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Test</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("Product", "Product", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            
+            <ul class="nav navbar-nav">            
+                <li class="active">@Html.ActionLink("Product", "Product", "Home")</li>
+               
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -31,8 +27,8 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - by Nemanja Tanic</p>
+        <footer style="text-align: center">
+            <p >&copy; @DateTime.Now.Year - by Nemanja Tanic</p>
         </footer>
     </div>
 

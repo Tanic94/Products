@@ -10,40 +10,31 @@ namespace Products.Controllers
     {
         ProductDbEntities dbConnecion = new ProductDbEntities();
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
         public ActionResult Product()
         {
             IQueryable<Product> products = dbConnecion.Products.OrderBy(p => p.Name);
             return View(products);
         }
         public ActionResult AddProduct(string nameOfProduct, string descriptionOfProduct, string categoryOfProduct, string manufacturerOfProduct,
-            string supplierOfProduct, int priceOfProduct)
+            string supplierOfProduct, String priceOfProduct)
         {
-            IQueryable<Product> returnProducts = dbConnecion.Products.Where(p => p.Name.Equals(nameOfProduct));
-            if (returnProducts.Count() == 0)
-            {
+            if (nameOfProduct != "" && descriptionOfProduct != "" && categoryOfProduct != "" && manufacturerOfProduct != "" && supplierOfProduct != "" && priceOfProduct !="") {
+                IQueryable<Product> returnProducts = dbConnecion.Products.Where(p => p.Name.Equals(nameOfProduct));
+                if (returnProducts.Count() == 0)
+                {
 
-                Product newProduct = new Product();
-                newProduct.ProductID = System.Guid.NewGuid();
-                newProduct.Name = nameOfProduct;
-                newProduct.Description = descriptionOfProduct;
-                newProduct.Category = categoryOfProduct;
-                newProduct.Manufacturer = manufacturerOfProduct;
-                newProduct.Supplier = supplierOfProduct;
-                newProduct.Price = priceOfProduct;
-                dbConnecion.Products.Add(newProduct);
+                    Product newProduct = new Product();
+                    newProduct.ProductID = System.Guid.NewGuid();
+                    newProduct.Name = nameOfProduct;
+                    newProduct.Description = descriptionOfProduct;
+                    newProduct.Category = categoryOfProduct;
+                    newProduct.Manufacturer = manufacturerOfProduct;
+                    newProduct.Supplier = supplierOfProduct;
+                    newProduct.Price = int.Parse(priceOfProduct);
+                    dbConnecion.Products.Add(newProduct);
+                }
+                dbConnecion.SaveChanges();
             }
-            dbConnecion.SaveChanges();
             return RedirectToAction("Product");
         }
     }

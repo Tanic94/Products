@@ -2,38 +2,67 @@
 @model IEnumerable<Product>
 
 @{
-    ViewBag.Title = "Product";
+                /**/
+
+                ViewBag.Title = "Product";
 }
-<h2>Product</h2>
-Dodaj novi proizvod
-@using (Html.BeginForm("AddProduct", "Home", FormMethod.Get))
+<h2>Products</h2>
+New product <br /> <br />
+@using (Html.BeginForm("AddProduct", "Home", FormMethod.Post))
 {
-    <label>Ime proizvoda: </label>
-    <input type="text" name="nameOfProduct" /> <br />
-    <label>Opis:</label>
-    <input type="text" name="descriptionOfProduct" /> <br />
-    <label>Kategorija: </label>
-    <input type="text" name="categoryOfProduct" /> <br />
-    <label>Proizvodjac: </label>
-    <input type="text" name="manufacturerOfProduct" /> <br />
-    <label>Dobavljac </label>
-    <input type="text" name="supplierOfProduct" /> <br />
-    <label>Cena</label>
-    <input type="number" name="priceOfProduct" /> <label>din</label> <br />
-    <button type="submit">Dodaj novi proizvod</button> <br />
+                  <div class="form-row">
+                      <div class="col">
+                          <input type="text" class="form-control" name="nameOfProduct" placeholder="Name">
+                      </div>
+                      <div class="col">
+                          <input type="text" class="form-control" name="descriptionOfProduct" placeholder="Description">
+                      </div>
+                      <div class="col">
+                          <input type="text" class="form-control" name="categoryOfProduct" placeholder="Category">
+                      </div>
+                      <div class="col">
+                          <input type="text" class="form-control" name="manufacturerOfProduct" placeholder="Manufacturer">
+                      </div>
+                      <div class="col">
+                          <input type="text" class="form-control" name="supplierOfProduct" placeholder="Supplier">
+                      </div>
+                      <div class="col">
+                          <input type="text" class="form-control" name="priceOfProduct" placeholder="Price in eur">
+                      </div>
+                      <br />
+                      <div class="col">
+                          <button type="submit" class="btn btn-primary">Add new product</button>
+                      </div>
+                      <br />
+                  </div>
 
 }
 
-@foreach (var pro in Model)
-{
-    <div>
-        <dl class="dl-horizontal">
 
-            <dd>
-                Ime proizvoda: <strong>@pro.Name &nbsp;</strong>  Opis: @pro.Description &nbsp; Kategorija: @pro.Category &nbsp;  Proizvodjac:
-                @pro.Manufacturer &nbsp;  Dobavljac: @pro.Supplier &nbsp;  Cena: @pro.Price
-            </dd>
-
-        </dl>
-    </div>
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Manufacturer</th>
+            <th scope="col">Supplier</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pro in Model)
+        {
+            <tr>
+                <td>@pro.Name</td>
+                <td>@pro.Description</td>
+                <td>@pro.Category</td>
+                <td>@pro.Manufacturer</td>
+                <td>@pro.Supplier</td>
+                <td>@pro.Price</td>
+                <td><button class="btn btn-secondary">Edit</button> &nbsp; <button  class="btn btn-danger" >Delete</button></td>
+            </tr>
+        }
+    </tbody>
+</table>
